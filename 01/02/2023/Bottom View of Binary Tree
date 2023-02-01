@@ -1,0 +1,32 @@
+class Solution
+{
+    public ArrayList <Integer> bottomView(Node root)
+    {
+        ArrayList<Integer > ans = new ArrayList<Integer>();
+        if (root == null){
+            return ans;
+        }
+        TreeMap <Integer , Integer > m = new TreeMap<>();
+        Queue <Node > q = new LinkedList<>();
+        root.hd = 0;
+        q.add(root);
+        while(!q.isEmpty()){
+            Node temp = q.remove();
+            int hd = temp.hd;
+            m.put(hd,temp.data);
+            if (temp.left!=null){
+                temp.left.hd = hd-1;
+                q.add(temp.left);
+            }
+            if (temp.right!= null){
+                temp.right.hd = hd+1;
+                q.add(temp.right);
+            }
+            
+        }
+        for (Map.Entry<Integer,Integer> entry : m.entrySet()) {
+            ans.add(entry.getValue()); 
+        }
+        return ans; 
+    }
+}
