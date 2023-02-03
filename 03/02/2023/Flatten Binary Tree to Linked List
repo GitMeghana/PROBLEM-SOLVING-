@@ -1,0 +1,14 @@
+class Solution {
+    private TreeNode cur = null;
+    public void flatten(TreeNode root) {
+        if (root == null){
+            return;
+        }
+        flatten(root.right);
+        flatten(root.left);
+        root.right = cur;
+        root.left = null;
+        cur = root;
+        
+    }
+}
