@@ -1,0 +1,31 @@
+class Solution {
+    Map <Integer,Integer > a = new HashMap<>();
+    public void preorder(TreeNode root) {
+        if (root == null){
+            return;
+        }
+        if(!a.containsKey(root.val)){
+            a.put(root.val,1);
+        }
+        else {
+            a.put(root.val,a.get(root.val)+1);
+        }
+        preorder(root.left);
+        preorder(root.right);
+    }
+    public int[] findMode(TreeNode root) {
+        preorder(root);
+        List<Integer> arr = new ArrayList<Integer>();
+        int k = (Collections.max(a.values()));
+        for (Map.Entry<Integer,Integer> entry : a.entrySet()){
+            if (entry.getValue()==k){
+                arr.add(entry.getKey());
+            }
+        }
+        int [] c = new int [arr.size()];
+        for (int i = 0;i<arr.size();i++){
+            c[i] = arr.get(i);
+        }
+        return c;
+    }
+}
