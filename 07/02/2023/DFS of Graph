@@ -1,0 +1,17 @@
+class Solution {
+    public ArrayList<Integer> dfsOfGraph(int V, ArrayList<ArrayList<Integer>> adj) {
+        ArrayList<Integer>ans = new ArrayList<>();
+        boolean visited [] = new boolean[V];
+        DFS(adj,visited,ans,0);
+        return ans;
+    }
+    public static void DFS(ArrayList<ArrayList<Integer>> adj, boolean visited[],ArrayList<Integer> ans,int source){
+        visited[source] = true;
+        ans.add(source);
+        for (int a : adj.get(source)){
+            if(!visited[a]){
+                DFS(adj,visited,ans,a);
+            }
+        }
+    }
+}
