@@ -1,0 +1,30 @@
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+    public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    
+    String input = scanner.nextLine();
+    char[] inputArray = input.toCharArray();
+
+    int start = 0;
+    int end = inputArray.length - 1;
+    while (start < end) {
+      if (!Character.isLetterOrDigit(inputArray[start])) {
+        start++;
+        continue;
+      }
+      if (!Character.isLetterOrDigit(inputArray[end])) {
+        end--;
+        continue;
+      }
+      char temp = inputArray[start];
+      inputArray[start] = inputArray[end];
+      inputArray[end] = temp;
+      start++;
+      end--;
+    }
+    System.out.println( new String(inputArray));
+  }
+}
