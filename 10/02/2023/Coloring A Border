@@ -1,0 +1,31 @@
+class Solution {
+    public int[][] colorBorder(int[][] grid, int row, int col, int color) {
+        dfs(grid,row,col,grid[row][col]);
+        for (int i = 0;i<grid.length;i++){
+            for (int j = 0;j<grid[0].length;j++){
+                if (grid[i][j]<0){
+                    grid[i][j] = color;
+                }
+            }
+        }
+        return grid;
+    }
+    int [][] dirs = {{0,1},{1,0},{0,-1},{-1,0}};
+    public void dfs(int [][] grid,int row,int col , int clr){
+        grid[row][col] = -clr;
+        int count = 0;
+        for (int i = 0;i<4;i++){
+            int rowc = row + dirs[i][0];
+            int colc = col + dirs[i][1];
+            if(rowc < 0 || colc < 0 || rowc >= grid.length || colc >= grid[0].length 
+            || Math.abs(grid[rowc][colc]) != clr) {
+                continue;
+            }
+            count++; 
+            if(grid[rowc][colc] == clr)
+                dfs(grid, rowc, colc, clr);
+        }
+        if(count == 4)
+            grid[row][col] = clr;
+    }
+}
