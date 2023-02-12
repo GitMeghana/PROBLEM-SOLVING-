@@ -1,0 +1,22 @@
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+      Scanner sc = new Scanner(System.in);
+      String str = sc.nextLine();
+        str = str.toLowerCase();
+        int i = 0 , j = str.length()-1;
+        while(i<j){
+            if (str.charAt(i)!= str.charAt(j)){
+                System.out.println("Not Palindrome");
+                System.exit(0);
+            }
+            i++;
+            j--;
+        }
+                System.out.println("Palindrome");
+                
+            }
+        }
