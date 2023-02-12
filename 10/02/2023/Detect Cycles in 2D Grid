@@ -1,0 +1,39 @@
+class Solution {
+    boolean check;
+    public boolean containsCycle(char[][] grid) {
+        int row =  grid.length;
+        int col = grid[0].length;
+        boolean [][] visited = new boolean [row][col];
+        for (int i = 0;i<row;i++){
+            for (int j = 0;j<col;j++){
+                if (!check && !visited[i][j]) {
+                    dfs(grid,i,j,visited,grid[i][j],0);
+                }
+            }
+        }
+        return check;   
+    }
+    public void dfs(char [][] grid, int i, int j, boolean [][] visited, char c, int direction) {
+        if (check == true)
+            return;
+        if (i<0 || j<0 || i>=grid.length || j>=grid[0].length || grid[i][j]!=c)
+            return;
+        if (!visited[i][j]) {
+            visited[i][j] = true;
+            if (direction != 1) 
+                dfs(grid, i+1, j, visited, c, 2);
+            if (direction != 2)
+                dfs(grid, i-1, j, visited, c, 1);
+            if (direction != 3)
+                dfs(grid, i, j+1, visited, c , 4);
+            if (direction != 4)
+                dfs(grid, i, j-1, visited, c, 3);
+        }
+        else 
+            check = true;
+    }
+}
+
+
+
+
