@@ -1,0 +1,48 @@
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int row = in.nextInt();
+        int col = in.nextInt();
+        int [][] grid = new int [row][col];
+        for (int i = 0;i<row;i++){
+            for (int j = 0;j<col;j++){
+                grid[i][j] = in.nextInt();
+            }
+        }
+        System.out.println(new Solution().count(grid));
+        in.close();
+        
+    }
+private int count (int [][] grid){
+    int a = 0;
+    for (int i = 0;i<grid.length;i++){
+        for (int j = 0;j<grid[i].length;j++){
+            if (grid[i][j] == 1){
+                a++;
+                dfs(grid,i,j);
+            }
+        }
+    }
+    return a;
+}
+private void dfs(int [][] grid , int i ,int j){
+    if (i<0 || j< 0 || i>=grid.length || j>=grid[i].length){
+        return;
+    }
+    if (grid[i][j] == 1){
+        grid[i][j] = 2;
+        dfs(grid,i-1,j);
+        dfs(grid,i+1,j);
+        dfs(grid,i,j-1);
+        dfs(grid,i,j+1);
+        dfs(grid,i+1,j+1);
+        dfs(grid,i-1,j-1);
+        dfs(grid,i-1,j+1);
+        dfs(grid,i+1,j-1);
+    }
+}
+}
