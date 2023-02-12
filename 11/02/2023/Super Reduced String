@@ -1,0 +1,24 @@
+class Result {
+public static String superReducedString(String s) {
+        StringBuilder str = new StringBuilder(s);
+        int i = 0;
+        while (i+1<str.length()){
+            if (str.charAt(i) == str.charAt(i+1)){
+                str.delete(i,i+2);
+                i = 0;
+            }
+            else {
+                i++;
+            }
+        }
+        if (str.length()!=0){
+            return String.valueOf(str);
+        }
+        else {
+            return "Empty String";
+        }
+    
+
+    }
+
+}
