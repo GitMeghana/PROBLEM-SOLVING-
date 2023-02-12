@@ -1,0 +1,28 @@
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int c = sc.nextInt();
+        String k = sc.next();
+        int b = sc.nextInt();
+        int arr [] = new int[c];
+        for (int i = 0;i<b;i++){
+            int count = 0;
+            int p = sc.nextInt();
+            char n = k.charAt(p-1);
+            for (int j = 0;j<p-1;j++){
+                if (k.charAt(j)==n){
+                    count++;
+                }
+            }
+            arr[i] = count;
+        }
+        for (int w = 0 ;w<b;w++){
+            System.out.println(arr[w]);
+        }
+     
+    }
+}
