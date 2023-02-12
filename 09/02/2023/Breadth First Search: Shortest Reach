@@ -1,0 +1,40 @@
+class Result {
+ public static List<Integer> bfs(int n, int m, List<List<Integer>> edges, int s) {
+        int [] levelArray = new int[n+1];
+        levelArray[0] = -1;
+        levelArray[s] = -1;
+        List<List<Integer>> graph = new ArrayList<>();
+        for (int i =0;i<n+1;i++) graph.add(new ArrayList<>());
+        for (List<Integer> edge : edges){
+            graph.get(edge.get(0)).add(edge.get(1));
+            graph.get(edge.get(1)).add(edge.get(0));
+        }
+        Queue<Integer> q = new LinkedList<>();
+        q.add(s);
+        int a = 0;
+        while(!q.isEmpty()){
+            a++;
+            int size = q.size();
+            for (int i =0;i<size;i++){
+                int b = q.poll();
+                for (int next : graph.get(b)){
+                    if (levelArray[next] == 0){
+                        levelArray[next] = a;
+                        q.add(next);
+                    }
+                }
+            }
+        }
+        List<Integer> ans = new ArrayList<>();
+        for (int i = 1;i<n+1;i++){
+            if (i == s) continue;
+            if (levelArray[i]!= 0) ans.add(levelArray[i]*6);
+            else ans.add(-1);
+        }
+        return ans;
+        
+  
+
+    }
+
+}
